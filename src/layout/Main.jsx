@@ -5,7 +5,7 @@ import Footer from '../pages/SharedPage/Footer';
 
 const Main = () => {
     return (
-        <div className='max-w-screen-xl mx-auto px-12'>
+        <div className='max-w-screen-xl mx-auto px-24'>
             <Header></Header>
             <Outlet></Outlet>
             <Footer></Footer>

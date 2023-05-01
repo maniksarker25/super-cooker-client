@@ -6,7 +6,7 @@ const Header = () => {
     const user = null
   return (
     <div>
-      <Navbar className="bg-gray-300" fluid={true} rounded={true}>
+      <Navbar   fluid={true} rounded={true}>
         <Navbar.Brand href="https://flowbite.com/">
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
           Super Cook
