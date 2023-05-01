@@ -36,16 +36,14 @@ const Header = () => {
             <Dropdown.Item>Earnings</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item>Sign out</Dropdown.Item>
-          </Dropdown>:<Link to='/login'><button className="bg-orange-600 px-6 py-2 rounded-md text-white font-semibold ">login</button></Link>
+          </Dropdown>:<Link to='/login'><button className="bg-orange-600 px-6 py-2 rounded-md text-white font-semibold ">Login</button></Link>
           }
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-          <Navbar.Link>
            <Link to='/'>Home</Link>
-          </Navbar.Link>
-          <Navbar.Link ><Link to='/blog'>Blog</Link></Navbar.Link>
-          <Navbar.Link  ><Link to='/about'>About</Link></Navbar.Link>
+          <Link to='/blog'>Blog</Link>
+          <Link to='/about'>About</Link>
         </Navbar.Collapse>
       </Navbar>
     </div>
