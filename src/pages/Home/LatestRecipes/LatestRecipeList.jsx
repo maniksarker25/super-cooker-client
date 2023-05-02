@@ -7,7 +7,7 @@ import '@smastrom/react-rating/style.css'
 const LatestRecipeList = ({ recipe }) => {
   const { name, picture, description, rating, view } = recipe;
   return (
-    <div className="p-2 lg:p-0">
+    <div className="p-2 shadow-md border ">
       <img className="h-48 w-full" src={picture} alt="" />
       <div className="card-body">
         <h5 className="font-semibold">{name}</h5>

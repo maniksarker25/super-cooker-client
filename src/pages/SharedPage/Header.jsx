@@ -1,6 +1,6 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
     const user = null
@@ -41,9 +41,9 @@ const Header = () => {
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-           <Link to='/'>Home</Link>
-          <Link to='/blog'>Blog</Link>
-          <Link to='/about'>About</Link>
+           <NavLink className={({ isActive }) => (isActive ? 'active' : 'default')} to='/'>Home</NavLink>
+          <NavLink className={({ isActive }) => (isActive ? 'active' : 'default')} to='/blog'>Blog</NavLink>
+          <NavLink className={({ isActive }) => (isActive ? 'active' : 'default')} to='/about'>About</NavLink>
         </Navbar.Collapse>
       </Navbar>
     </div>
