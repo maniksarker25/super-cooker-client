@@ -1,17 +1,21 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle,FaGithub } from 'react-icons/fa';
 import { authContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
   const {signInGoogle} = useContext(authContext)
+  const location = useLocation()
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || '/';
 
   // google sign in 
   const handleGoogleSignIn = () =>{
       signInGoogle()
       .then(result=>{
         const loggedUser = result.user;
+        navigate(from,{replace:true})
         console.log(loggedUser)
       })
       .catch(error=>{
