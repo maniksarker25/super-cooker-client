@@ -1,9 +1,24 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle,FaGithub } from 'react-icons/fa';
+import { authContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
+  const {signInGoogle} = useContext(authContext)
+
+  // google sign in 
+  const handleGoogleSignIn = () =>{
+      signInGoogle()
+      .then(result=>{
+        const loggedUser = result.user;
+        console.log(loggedUser)
+      })
+      .catch(error=>{
+        const errorMessage = error.message;
+        console.log(errorMessage)
+      })
+  }
   return (
     <div>
       <div className="mt-16 lg:w-1/2 mx-auto px-6 border py-6">
@@ -48,14 +63,14 @@ const Login = () => {
           </p>
         </form>
       </div>
-      <div className="mt-6 w-1/2 mx-auto ps-24">
+      <div className="mt-6 lg:w-1/2 mx-auto lg:ps-24">
         <div className="flex items-center gap-2 my-4">
-          <hr className="w-1/3" />
+          <hr className=" w-1/2  lg:w-1/3 " />
           <span>or</span>
-          <hr className="w-1/3" />
+          <hr className=" w-1/2 lg:w-1/3 " />
         </div>
-        <div className="ps-16">
-          <button className="bg-orange-600 px-8 py-2 flex items-center gap-2 rounded-md  text-white">
+        <div className="lg:ps-16 ps-20">
+          <button onClick={handleGoogleSignIn} className="bg-orange-600 px-8 py-2 flex items-center gap-2 rounded-md  text-white">
             <FaGoogle/>Continue With Google
           </button>
           <button className="bg-orange-600 px-8 py-2 mt-2 flex items-center gap-2 rounded-md text-white">

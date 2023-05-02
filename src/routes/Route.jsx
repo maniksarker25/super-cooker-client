@@ -7,6 +7,7 @@ import Login from '../pages/Login/Login';
 import Home from '../pages/Home/Home/Home';
 import ChepDetails from '../pages/ChepDetails/ChepDetails';
 import Registration from '../pages/Registration/Registration';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
     {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'cheps/:id',
-                element:<ChepDetails></ChepDetails>,
+                element:<PrivateRoute><ChepDetails></ChepDetails></PrivateRoute>,
                 loader:({params}) => fetch(`http://localhost:4000/cheps/${params.id}`)
             }
 
