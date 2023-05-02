@@ -1,28 +1,40 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaGoogle,FaGithub } from 'react-icons/fa';
+import { FaGoogle, FaGithub } from "react-icons/fa";
 import { authContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
-  const {signInGoogle} = useContext(authContext)
-  const location = useLocation()
+  const { signInGoogle, signInGithub } = useContext(authContext);
+  const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || "/";
 
-  // google sign in 
-  const handleGoogleSignIn = () =>{
-      signInGoogle()
-      .then(result=>{
+  // google sign in
+  const handleGoogleSignIn = () => {
+    signInGoogle()
+      .then((result) => {
         const loggedUser = result.user;
-        navigate(from,{replace:true})
-        console.log(loggedUser)
+        navigate(from, { replace: true });
+        // console.log(loggedUser)
       })
-      .catch(error=>{
+      .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage)
+        // console.log(errorMessage)
+      });
+  };
+  // github sign in
+  const handleGithubSignIn = () => {
+    signInGithub()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
       })
-  }
+      .then((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
   return (
     <div>
       <div className="mt-16 lg:w-1/2 mx-auto px-6 border py-6">
@@ -74,11 +86,18 @@ const Login = () => {
           <hr className=" w-1/2 lg:w-1/3 " />
         </div>
         <div className="lg:ps-16 ps-20">
-          <button onClick={handleGoogleSignIn} className="bg-orange-600 px-8 py-2 flex items-center gap-2 rounded-md  text-white">
-            <FaGoogle/>Continue With Google
+          <button
+            onClick={handleGoogleSignIn}
+            className="bg-orange-600 px-8 py-2 flex items-center gap-2 rounded-md  text-white"
+          >
+            <FaGoogle />
+            Continue With Google
           </button>
-          <button className="bg-orange-600 px-8 py-2 mt-2 flex items-center gap-2 rounded-md text-white">
-            <FaGithub/> Continue With Github
+          <button
+            onClick={handleGithubSignIn}
+            className="bg-orange-600 px-8 py-2 mt-2 flex items-center gap-2 rounded-md text-white"
+          >
+            <FaGithub /> Continue With Github
           </button>
         </div>
       </div>
