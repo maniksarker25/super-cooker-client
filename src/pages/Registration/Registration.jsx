@@ -1,10 +1,14 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../../Providers/AuthProvider";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 
 const Registration = () => {
+  const {createUser} = useContext(authContext)
+  const [error,setError] = useState('');
+  const [success,setSuccess] = useState('');
+
   const handleRegistration = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -12,7 +16,32 @@ const Registration = () => {
     const photoUrl = form.photoUrl.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, photoUrl, password, email);
+    setError('');
+    setSuccess('');
+     // validation
+     if (password.length < 6) {
+      setError("Password must have 6 character");
+      return;
+    } else if (!/(?=.*[A-Z])/.test(password)) {
+      setError("Password must have 1 uppercase");
+      return;
+    } else if (!/(?=.*[0-9])/.test(password)) {
+      setError("Password must have 1 numeric");
+      return;
+    } else if (!/(?=.*[!@#$%^&*])/.test(password)) {
+      setError("Password must have 1 special character");
+      return;
+    }
+    createUser(email,password)
+    .then(result=>{
+      const loggedUser = result.user;
+      setSuccess('User Sign In Successfully')
+      form.reset();
+    })
+    .catch(error=>{
+      const errorMessage = error.message;
+      setError(errorMessage)
+    })
   };
   const { signInGoogle, signInGithub } = useContext(authContext);
   const location = useLocation();
@@ -103,8 +132,10 @@ const Registration = () => {
             <Checkbox id="remember" />
             <Label htmlFor="remember">Accept term & conditions</Label>
           </div>
+          <p className="text-red-600">{error}</p>
+          <p className="text-green-500">{success}</p>
           <Button className="bg-orange-600 hover:bg-orange-700" type="submit">
-            Submit
+            Registration
           </Button>
           <p className="text-center">
             Already you have an account?

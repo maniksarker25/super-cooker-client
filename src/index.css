@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .active{
-    @apply font-medium tracking-wide text-orange-700 transition-colors duration-200 hover:text-orange-400
+    @apply font-semibold text-lg tracking-wide text-orange-700 transition-colors duration-200 hover:text-orange-400
+  }
+
+  .default{
+    @apply font-semibold text-lg
   }

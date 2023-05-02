@@ -1,14 +1,38 @@
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { authContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
-  const { signInGoogle, signInGithub } = useContext(authContext);
+  const { signInGoogle, signInGithub,logInWithEmailPassword} = useContext(authContext);
+  const [error,setError] = useState('');
+  const [success,setSuccess] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
+  // login with email password
+  const handleLogIn = (event) =>{
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    setError('');
+    setSuccess('');
+    logInWithEmailPassword(email,password)
+    .then(result=>{
+      const loggedUser = result.user;
+      setSuccess('User Login Successfully');
+      form.reset();
+    })
+    .catch(error=>{
+      const errorMessage = error.message;
+      console.log(errorMessage)
+      setError(errorMessage)
+    })
+    
+
+  }
 
   // google sign in
   const handleGoogleSignIn = () => {
@@ -41,25 +65,27 @@ const Login = () => {
         <h2 className="text-center text-3xl font-semibold my-6">
           Please Login
         </h2>
-        <form className="flex flex-col gap-4">
+        <form onSubmit={handleLogIn} className="flex flex-col gap-4">
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="email1" value="Your email" />
+              <Label htmlFor="email" value="Your email" />
             </div>
             <TextInput
-              id="email1"
+              id="email"
               type="email"
+              name="email"
               placeholder="Your Email"
               required={true}
             />
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="password1" value="Your password" />
+              <Label htmlFor="password" value="Your password" />
             </div>
             <TextInput
-              id="password1"
+              id="password"
               type="password"
+              name="password"
               placeholder="Your Password"
               required={true}
             />
@@ -68,8 +94,10 @@ const Login = () => {
             <Checkbox id="remember" />
             <Label htmlFor="remember">Remember me</Label>
           </div>
+         {error &&  <p className="text-red-600">{error}</p>}
+          {success && <p className="text-green-600">{success}</p>}
           <Button type="submit" className="bg-orange-600 hover:bg-orange-700">
-            Submit
+            Login
           </Button>
           <p className="text-center">
             New in Super Cooker?{" "}

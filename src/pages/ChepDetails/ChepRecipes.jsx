@@ -6,20 +6,20 @@ import '@smastrom/react-rating/style.css'
 const ChepRecipes = ({ recipe }) => {
   const { name, description, rating, image, ingredients,cooking_method } = recipe;
   return (
-    <div className="border p-2 rounded-md">
+    <div className="border p-2 rounded-md relative">
       <img className="w-full h-64 rounded-md" src={image} alt="" />
-      <div className="card-body flex-col">
+      <div className="card-body ">
         <h5 className="text-xl font-semibold">{name}</h5>
         <h5 className="text-xl font-semibold">Ingredients:</h5>
         {ingredients.map((ingredient, i) => (
           <li key={i}>{ingredient}</li>
         ))}
-        <div>
+        <div className="mb-8">
             <h5 className="text-xl font-semibold">Cooking Method:</h5>
-            <p>{cooking_method}</p>
+            <p>{cooking_method.slice(0,150)}...</p>
         </div>
-        <div className="flex justify-between">
-          <div className=" flex  items-center gap-1 ">
+        <div className="flex justify-between absolute bottom-1 right-2 left-2">
+          <div className=" flex items-center gap-1 ">
             <Rating style={{ maxWidth: 100 }} value={rating} readOnly />
             <span>{rating}</span>
           </div>

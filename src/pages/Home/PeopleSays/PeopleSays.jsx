@@ -7,7 +7,7 @@ import people3 from "../../../assets/people3.jpg";
 const PeopleSays = () => {
   return (
     <div className="my-12">
-      <h2 className="mt-6 text-center font-semibold text-4xl">
+      <h2 className="my-16 text-center font-semibold text-4xl">
         What People Say About Us?
       </h2>
       <div className="mt-6 bg-img px-12  lg:px-24 flex items-center h-screen lg:h-96 ">

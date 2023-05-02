@@ -9,8 +9,8 @@ const LatestRecipes = () => {
     .then(data => setLatestRecipes(data))
    },[])
     return (
-        <div className='mt-12'>
-            <h1 className='text-4xl text-center my-6 font-semibold'>Our Latest Recipes</h1>
+        <div className='my-32'>
+            <h1 className='text-4xl text-center my-16 font-semibold'>Our Latest Recipes</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 '>
                 {
                     latestRecipes.map(recipe=><LatestRecipeList key={recipe.id} recipe={recipe}></LatestRecipeList>)

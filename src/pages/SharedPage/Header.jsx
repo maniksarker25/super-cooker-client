@@ -5,7 +5,7 @@ import { authContext } from "../../Providers/AuthProvider";
 
 const Header = () => {
     const {user,logOut} = useContext(authContext)
-    console.log(user)
+    // console.log(user)
     // handle sign out
     const handleSignOut = ()=>{
       logOut()
@@ -13,10 +13,10 @@ const Header = () => {
       .catch()
     }
   return (
-    <div>
+    <div className="max-w-screen-xl mx-auto lg:px-16">
       <Navbar   fluid={true} rounded={true}>
         <Navbar.Brand href="https://flowbite.com/">
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
           Super Cook
           </span>
         </Navbar.Brand>
