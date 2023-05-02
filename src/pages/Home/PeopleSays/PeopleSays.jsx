@@ -10,8 +10,8 @@ const PeopleSays = () => {
       <h2 className="mt-6 text-center font-semibold text-4xl">
         What People Say About Us?
       </h2>
-      <div className="mt-6 bg-img px-24 flex items-center ">
-        <div className="flex gap-6">
+      <div className="mt-6 bg-img px-12  lg:px-24 flex items-center h-screen lg:h-96 ">
+        <div className="lg:flex space-y-8 lg:space-y-0  gap-6">
           <div className="bg-white rounded-sm p-2 relative shadow-lg">
             <img
               className="w-16 rounded-full h-16 absolute -top-6 -left-4"
@@ -21,9 +21,7 @@ const PeopleSays = () => {
             <div className="p-8">
               <h5 className="text-2xl font-semibold">Nancy Nancy</h5>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deserunt error non vero, ipsam quae in qui cum numquam optio?
-                Quia?
+              "Wow, this recipe is absolutely delicious! The flavors are perfectly balanced, and it's so easy to make.
               </p>
             </div>
           </div>
@@ -36,9 +34,7 @@ const PeopleSays = () => {
             <div className="p-8">
               <h5 className="text-2xl font-semibold">Clark Brigid</h5>
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Provident distinctio sint magnam, veritatis error similique
-                doloribus ipsa perspiciatis facilis fuga?
+              "I've never been much of a cook, but this recipe made me feel like a pro! It's straightforward.
               </p>
             </div>
           </div>
@@ -51,9 +47,7 @@ const PeopleSays = () => {
             <div className="p-8">
               <h5 className="text-2xl font-semibold">Kevin Helmi</h5>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-                blanditiis et, corrupti eos ducimus saepe quibusdam eum aliquam
-                itaque quam!
+               "This recipe is a real crowd-pleaser! I served it at a dinner party, and everyone was asking for seconds. 
               </p>
             </div>
           </div>
