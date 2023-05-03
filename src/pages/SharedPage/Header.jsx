@@ -2,6 +2,7 @@ import { Avatar, Dropdown, Navbar, Progress, Spinner } from "flowbite-react";
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { authContext } from "../../Providers/AuthProvider";
+import LoadingSpiner from "../LoadingSpiner/LoadingSpiner";
 
 const Header = () => {
     const {user,logOut,loading} = useContext(authContext);
@@ -11,6 +12,9 @@ const Header = () => {
       logOut()
       .then()
       .catch()
+    }
+    if(loading){
+      return <LoadingSpiner></LoadingSpiner>
     }
   return (
     <div className="max-w-screen-xl mt-2 mx-auto lg:px-16">
