@@ -3,11 +3,16 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../../Providers/AuthProvider";
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { updateProfile } from "firebase/auth";
 
 const Registration = () => {
   const {createUser} = useContext(authContext)
   const [error,setError] = useState('');
   const [success,setSuccess] = useState('');
+  const { signInGoogle, signInGithub } = useContext(authContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   const handleRegistration = (event) => {
     event.preventDefault();
@@ -22,19 +27,17 @@ const Registration = () => {
      if (password.length < 6) {
       setError("Password must have 6 character");
       return;
-    } else if (!/(?=.*[A-Z])/.test(password)) {
-      setError("Password must have 1 uppercase");
-      return;
-    } else if (!/(?=.*[0-9])/.test(password)) {
-      setError("Password must have 1 numeric");
-      return;
-    } else if (!/(?=.*[!@#$%^&*])/.test(password)) {
-      setError("Password must have 1 special character");
-      return;
     }
     createUser(email,password)
     .then(result=>{
       const loggedUser = result.user;
+      console.log(loggedUser)
+      
+      // update profile
+      updateProfile(loggedUser,{
+        displayName:name,photoURL:photoUrl
+      })
+      navigate(from, { replace: true });
       setSuccess('User Sign In Successfully')
       form.reset();
     })
@@ -43,36 +46,7 @@ const Registration = () => {
       setError(errorMessage)
     })
   };
-  const { signInGoogle, signInGithub } = useContext(authContext);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
 
-  // google sign in
-  const handleGoogleSignIn = () => {
-    signInGoogle()
-      .then((result) => {
-        const loggedUser = result.user;
-        navigate(from, { replace: true });
-        // console.log(loggedUser)
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        // console.log(errorMessage)
-      });
-  };
-  // github sign in
-  const handleGithubSignIn = () => {
-    signInGithub()
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-      })
-      .then((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
-  };
   return (
     <div>
       <div className="lg:w-1/2 mx-auto mt-16 px-6 border py-4">
@@ -89,7 +63,6 @@ const Registration = () => {
               type="text"
               name="name"
               placeholder="Your Name"
-              required={true}
             />
           </div>
           <div>
@@ -101,7 +74,6 @@ const Registration = () => {
               type="text"
               name="photoUrl"
               placeholder="Photo Url"
-              required={true}
             />
           </div>
           <div>
@@ -132,8 +104,8 @@ const Registration = () => {
             <Checkbox id="remember" />
             <Label htmlFor="remember">Accept term & conditions</Label>
           </div>
-          <p className="text-red-600">{error}</p>
-          <p className="text-green-500">{success}</p>
+          {error && <p className="text-red-600">{error}</p>}
+          {success && <p className="text-green-500">{success}</p>}
           <Button className="bg-orange-600 hover:bg-orange-700" type="submit">
             Registration
           </Button>
@@ -144,28 +116,6 @@ const Registration = () => {
             </Link>
           </p>
         </form>
-      </div>
-      <div className="mt-6 lg:w-1/2 mx-auto lg:ps-24">
-        <div className="flex items-center gap-2 my-4">
-          <hr className=" w-1/2  lg:w-1/3 " />
-          <span>or</span>
-          <hr className=" w-1/2 lg:w-1/3 " />
-        </div>
-        <div className="lg:ps-16 ps-20">
-          <button
-            onClick={handleGoogleSignIn}
-            className="bg-orange-600 px-8 py-2 flex items-center gap-2 rounded-md  text-white"
-          >
-            <FaGoogle />
-            Continue With Google
-          </button>
-          <button
-            onClick={handleGithubSignIn}
-            className="bg-orange-600 px-8 py-2 mt-2 flex items-center gap-2 rounded-md text-white"
-          >
-            <FaGithub /> Continue With Github
-          </button>
-        </div>
       </div>
     </div>
   );

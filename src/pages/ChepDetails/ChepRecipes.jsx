@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Rating } from '@smastrom/react-rating'
-
 import '@smastrom/react-rating/style.css'
+import { Toaster, toast } from 'react-hot-toast';
 
 const ChepRecipes = ({ recipe }) => {
   const { name, description, rating, image, ingredients,cooking_method } = recipe;
+  const [disable,setDisable] = useState(false)
+
+  const handleAddToFavorite = () =>{
+    toast.success(" Successfully Added to favorite");
+    setDisable(true)
+  }
   return (
     <div className="border p-2 rounded-md relative">
       <img className="w-full h-64 rounded-md" src={image} alt="" />
@@ -23,9 +29,10 @@ const ChepRecipes = ({ recipe }) => {
             <Rating style={{ maxWidth: 100 }} value={rating} readOnly />
             <span>{rating}</span>
           </div>
-          <button className="bg-orange-600 px-6 py-2 rounded-md text-white font-semibold">Add Favorite </button>
+          <button onClick={handleAddToFavorite}  className={disable?"bg-orange-200 px-6 py-2 rounded-md text-white font-semibold":"bg-orange-600 px-6 py-2 rounded-md text-white font-semibold"} disabled={disable}>Add Favorite </button>
         </div>
       </div>
+      <Toaster/>
     </div>
   );
 };

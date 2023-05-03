@@ -1,10 +1,10 @@
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
-import React, { useContext } from "react";
+import { Avatar, Dropdown, Navbar, Progress, Spinner } from "flowbite-react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { authContext } from "../../Providers/AuthProvider";
 
 const Header = () => {
-    const {user,logOut} = useContext(authContext)
+    const {user,logOut,loading} = useContext(authContext);
     // console.log(user)
     // handle sign out
     const handleSignOut = ()=>{
@@ -13,7 +13,7 @@ const Header = () => {
       .catch()
     }
   return (
-    <div className="max-w-screen-xl mx-auto lg:px-16">
+    <div className="max-w-screen-xl mt-2 mx-auto lg:px-16">
       <Navbar   fluid={true} rounded={true}>
         <Navbar.Brand href="https://flowbite.com/">
           <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
@@ -22,6 +22,10 @@ const Header = () => {
         </Navbar.Brand>
         <div className="flex md:order-2">
           {
+            loading? <Spinner
+            color="failure"
+            aria-label="Failure spinner example"
+          />:
             user?<Dropdown
             arrowIcon={false}
             inline={true}

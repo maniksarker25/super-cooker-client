@@ -8,11 +8,13 @@ import Home from '../pages/Home/Home/Home';
 import ChepDetails from '../pages/ChepDetails/ChepDetails';
 import Registration from '../pages/Registration/Registration';
 import PrivateRoute from './PrivateRoute';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
     {
         path:'/',
         element:<Main></Main>,
+        errorElement:<ErrorPage></ErrorPage>,
         children:[
             {
                path:'/',
