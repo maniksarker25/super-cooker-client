@@ -2,11 +2,10 @@ import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../../Providers/AuthProvider";
-import { FaGoogle, FaGithub } from "react-icons/fa";
 import { updateProfile } from "firebase/auth";
 
 const Registration = () => {
-  const {createUser} = useContext(authContext)
+  const {createUser,logOut} = useContext(authContext)
   const [error,setError] = useState('');
   const [success,setSuccess] = useState('');
   const { signInGoogle, signInGithub } = useContext(authContext);
@@ -37,7 +36,11 @@ const Registration = () => {
       updateProfile(loggedUser,{
         displayName:name,photoURL:photoUrl
       })
-      navigate(from, { replace: true });
+
+      logOut()
+      // navigate(from, { replace: true });
+      navigate('/login')
+      
       setSuccess('User Sign In Successfully')
       form.reset();
     })

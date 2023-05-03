@@ -5,11 +5,11 @@ import { Toaster, toast } from 'react-hot-toast';
 
 const ChepRecipes = ({ recipe }) => {
   const { name, description, rating, image, ingredients,cooking_method } = recipe;
-  const [disable,setDisable] = useState(false)
+  const [favorite,setFavorite] = useState(false)
 
   const handleAddToFavorite = () =>{
     toast.success(" Successfully Added to favorite");
-    setDisable(true)
+    setFavorite(true)
   }
   return (
     <div className="border p-2 rounded-md relative">
@@ -29,7 +29,7 @@ const ChepRecipes = ({ recipe }) => {
             <Rating style={{ maxWidth: 100 }} value={rating} readOnly />
             <span>{rating}</span>
           </div>
-          <button onClick={handleAddToFavorite}  className={disable?"bg-orange-200 px-6 py-2 rounded-md text-white font-semibold":"bg-orange-600 px-6 py-2 rounded-md text-white font-semibold"} disabled={disable}>Add Favorite </button>
+          <button onClick={handleAddToFavorite}  className={favorite?"bg-orange-200 px-6 py-2 rounded-md text-white font-semibold":"bg-orange-600 px-6 py-2 rounded-md text-white font-semibold"} disabled={favorite}>Add Favorite </button>
         </div>
       </div>
       <Toaster/>

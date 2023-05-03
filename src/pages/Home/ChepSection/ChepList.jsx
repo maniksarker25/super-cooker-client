@@ -7,7 +7,7 @@ const ChepList = ({ chep }) => {
   const { name, picture, experience_years, num_recipes, likes, id } = chep;
   return (
     <div className="bg-gray-200 p-2 rounded-md overflow-hidden">
-      <LazyLoad className="lazy"><img className="h-64 w-full rounded-md " src={picture} alt="" /></LazyLoad>
+      <LazyLoad className="lazy" threshold={1}><img className="h-64 w-full rounded-md " src={picture} alt="" /></LazyLoad>
       <div className="card-body">
         <h4 className="text-2xl font-semibold mt-4">{name}</h4>
         <p>{experience_years} Years of experience</p>
