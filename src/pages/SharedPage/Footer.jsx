@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="">
+    <div className="mt-32">
       <div className="p-6 border-2 rounded-lg mt-12 bg-black text-white">
         <div className="max-w-screen-xl mx-auto my-24 lg:px-16">
           <div className="grid grid-cols-2 lg:grid-cols-4 lg:ps-8  gap-24  ">
