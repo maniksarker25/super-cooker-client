@@ -19,11 +19,11 @@ const Header = () => {
   return (
     <div className="max-w-screen-xl mt-2 mx-auto lg:px-16">
       <Navbar   fluid={true} rounded={true}>
-        <Navbar.Brand href="https://flowbite.com/">
+        <Link to='/'>
           <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
           Super Cook
           </span>
-        </Navbar.Brand>
+        </Link>
         <div className="flex md:order-2">
           {
             loading? <Spinner
