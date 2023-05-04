@@ -30,7 +30,7 @@ const Registration = () => {
     createUser(email,password)
     .then(result=>{
       const loggedUser = result.user;
-      console.log(loggedUser)
+      // console.log(loggedUser)
       
       // update profile
       updateProfile(loggedUser,{
@@ -38,7 +38,6 @@ const Registration = () => {
       })
 
       logOut()
-      // navigate(from, { replace: true });
       navigate('/login')
       
       setSuccess('User Sign In Successfully')
