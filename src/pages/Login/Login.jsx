@@ -46,7 +46,7 @@ const Login = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
-        // console.log(errorMessage)
+        console.log(errorMessage)
       });
   };
   // github sign in
@@ -58,9 +58,9 @@ const Login = () => {
         navigate(from, { replace: true });
 
       })
-      .then((error) => {
+      .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage);
+        // console.log(errorMessage);
       });
   };
   return (
