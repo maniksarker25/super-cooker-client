@@ -7,7 +7,7 @@ const ChepRecipes = ({ recipe }) => {
   const { name, description, rating, image, ingredients,cooking_method } = recipe;
   const [favorite,setFavorite] = useState(false)
 
-  // handle favorite
+  // handle favorite---------
   const handleAddToFavorite = () =>{
     toast.success(" Successfully Added to favorite");
     setFavorite(true)
