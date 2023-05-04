@@ -48,6 +48,7 @@ const Login = () => {
       .catch((error) => {
         const errorMessage = error.message;
         // console.log(errorMessage)
+        setLoading(false)
       });
   };
   // github sign in
@@ -62,6 +63,7 @@ const Login = () => {
       .catch((error) => {
         const errorMessage = error.message;
         // console.log(errorMessage);
+        setLoading(false)
       });
   };
   return (
