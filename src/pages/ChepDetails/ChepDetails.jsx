@@ -1,14 +1,27 @@
-import React from "react";
-import { useLoaderData, useNavigation} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLoaderData, useNavigation, useParams} from "react-router-dom";
 import ChepRecipes from "./ChepRecipes";
 import LoadingSpiner from "../LoadingSpiner/LoadingSpiner";
 
 const ChepDetails = () => {
 
-  const navigation = useNavigation();
-  console.log(navigation.state)
-  const chep = useLoaderData();
-
+  const id = useParams().id;
+  const [chep,setChep] = useState(null);
+  // console.log(id)
+  const [loading,setLoading] = useState(false)
+  useEffect(()=>{
+    setLoading(true)
+    fetch(`https://chep-recipe-hunter-server-maniksarker25.vercel.app/cheps/${id}`)
+    .then(res=>res.json())
+    .then(data=>{
+      setChep(data)
+      setLoading(false)
+    })
+  },[])
+  // show loader when data is null 
+  if(!chep){
+    return <LoadingSpiner></LoadingSpiner>
+  }
   const {
     name,
     picture,
@@ -18,8 +31,8 @@ const ChepDetails = () => {
     num_recipes,
     recipes,
   } = chep;
-  // show loader when data in loading state
-  if (navigation.state === 'loading') {
+  // show loader when data is loading state
+  if(loading){
     return <LoadingSpiner></LoadingSpiner>
   }
   return (

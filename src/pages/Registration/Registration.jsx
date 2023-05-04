@@ -66,6 +66,7 @@ const Registration = () => {
               type="text"
               name="name"
               placeholder="Your Name"
+              required
             />
           </div>
           <div>
@@ -77,6 +78,7 @@ const Registration = () => {
               type="text"
               name="photoUrl"
               placeholder="Photo Url"
+              required
             />
           </div>
           <div>

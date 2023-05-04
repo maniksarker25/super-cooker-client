@@ -38,8 +38,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'cheps/:id',
-                element:<PrivateRoute><ChepDetails></ChepDetails></PrivateRoute>,
-                loader:({params}) => fetch(`https://chep-recipe-hunter-server-maniksarker25.vercel.app/cheps/${params.id}`)
+                element:<PrivateRoute><ChepDetails></ChepDetails></PrivateRoute>
             }
 
         ]
