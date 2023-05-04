@@ -5,7 +5,7 @@ import { FaGoogle, FaGithub } from "react-icons/fa";
 import { authContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
-  const { signInGoogle, signInGithub,logInWithEmailPassword} = useContext(authContext);
+  const { signInGoogle, signInGithub,logInWithEmailPassword,setLoading} = useContext(authContext);
   const [error,setError] = useState('');
   const [success,setSuccess] = useState('');
   const location = useLocation();
@@ -31,6 +31,7 @@ const Login = () => {
       const errorMessage = error.message;
       // console.log(errorMessage)
       setError(errorMessage)
+      setLoading(false)
     })
     
 

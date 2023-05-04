@@ -57,7 +57,8 @@ const AuthProvider = ({children}) => {
         loading,
         signInGithub,
         createUser,
-        logInWithEmailPassword
+        logInWithEmailPassword,
+        setLoading
     }
     return (
         <authContext.Provider value={userInfo}>

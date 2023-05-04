@@ -5,7 +5,7 @@ import { authContext } from "../../Providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 
 const Registration = () => {
-  const {createUser,logOut} = useContext(authContext)
+  const {createUser,logOut,setLoading} = useContext(authContext)
   const [error,setError] = useState('');
   const [success,setSuccess] = useState('');
   const { signInGoogle, signInGithub } = useContext(authContext);
@@ -46,6 +46,7 @@ const Registration = () => {
     .catch(error=>{
       const errorMessage = error.message;
       setError(errorMessage)
+      setLoading(false)
     })
   };
 
