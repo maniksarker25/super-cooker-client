@@ -2,7 +2,7 @@
 * Make a Super Cooker  Website with react , react router dom
 
 * ## Live link
-* Hosted in netlify => [Super Cooker](https://chep-recipe.web.app/)
+* Hosted in Firebase => [Super Cooker](https://chep-recipe.web.app/)
 
 
 * ## Resource And Credits
