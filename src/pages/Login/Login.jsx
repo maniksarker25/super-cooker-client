@@ -46,7 +46,7 @@ const Login = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage)
+        // console.log(errorMessage)
       });
   };
   // github sign in
