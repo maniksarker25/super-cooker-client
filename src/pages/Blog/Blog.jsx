@@ -16,7 +16,7 @@ const Blog = () => {
         })
     },[])
     // console.log(questionAnswer)
-    // show loader when data is loading state
+    // show loader when data is loading statee
     if(loading){
       return <LoadingSpiner></LoadingSpiner>
     }
